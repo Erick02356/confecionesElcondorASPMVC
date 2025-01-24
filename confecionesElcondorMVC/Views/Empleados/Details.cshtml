@@ -1,0 +1,62 @@
+﻿@model confecionesElcondorMVC.Models.Empleado
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Detalles del Empleado</h1>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3 text-primary">
+                    Tipo de documento:
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.IdTipoDocumentoNavigation.NombreTipo)
+                </dd>
+
+                <dt class="col-sm-3 text-primary">
+                    Número de documento:
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.NumeroDocumento)
+                </dd>
+
+                <dt class="col-sm-3 text-primary">
+                    Nombres:
+                </dt>
+                <dd class="col-sm-9">
+                    @Model.PrimerNombre @Model.SegundoNombre
+                </dd>
+
+                <dt class="col-sm-3 text-primary">
+                    Apellidos:
+                </dt>
+                <dd class="col-sm-9">
+                    @Model.PrimerApellido @Model.SegundoApellido
+                </dd>
+
+                <dt class="col-sm-3 text-primary">
+                    Fecha de nacimiento:
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.FechaNacimiento)
+                </dd>
+
+                <dt class="col-sm-3 text-primary">
+                    Área:
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.IdAreaNavigation.NombreArea)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a asp-action="Edit" asp-route-id="@Model?.IdEmpleado" class="btn btn-primary me-2">Editar</a>
+        <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<confecionesElcondorMVC.Models.Empleado>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Gestión de Empleados</h1>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="mb-0">Lista de empleados registrados en el sistema:</p>
+        <a asp-action="Create" class="btn btn-success btn-sm">
+            <i class="bi bi-plus-circle"></i> Crear Nuevo
+        </a>
+    </div>
+
+    <table class="table table-striped table-hover table-bordered align-middle">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>Nombre Completo</th>
+                <th>Documento</th>
+                <th>Tipo de Documento</th>
+                <th>Área</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                @foreach (var empleado in Model)
+                {
+                    <tr>
+                        <td>@empleado.PrimerNombre @empleado.SegundoNombre @empleado.PrimerApellido @empleado.SegundoApellido</td>
+                        <td class="text-center">@empleado.NumeroDocumento</td>
+                        <td class="text-center">@empleado.IdTipoDocumentoNavigation.NombreTipo</td>
+                        <td class="text-center">@empleado.IdAreaNavigation.NombreArea</td>
+                        <td class="text-center">@empleado.FechaNacimiento.ToShortDateString()</td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group" aria-label="Acciones">
+                                <a asp-action="Edit" asp-route-id="@empleado.IdEmpleado" class="btn btn-sm btn-primary">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </a>
+                                <a asp-action="Details" asp-route-id="@empleado.IdEmpleado" class="btn btn-sm btn-info text-white">
+                                    <i class="bi bi-eye"></i> Detalles
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@empleado.IdEmpleado" class="btn btn-sm btn-danger">
+                                    <i class="bi bi-trash"></i> Eliminar
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center text-muted">No hay empleados registrados.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

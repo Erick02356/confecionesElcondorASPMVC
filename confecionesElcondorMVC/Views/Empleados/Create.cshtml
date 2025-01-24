@@ -1,0 +1,100 @@
+﻿@model confecionesElcondorMVC.Models.Empleado
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Crear Empleado</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="text-secondary">Datos del Empleado</h4>
+                    <hr />
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="IdTipoDocumento" class="form-label">Seleccione un tipo de documento</label>
+                            <select asp-for="IdTipoDocumento" class="form-select" asp-items="ViewBag.IdTipoDocumento"></select>
+                            <span asp-validation-for="IdTipoDocumento" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="NumeroDocumento" class="form-label">Agregue su número de documento</label>
+                            <input asp-for="NumeroDocumento" class="form-control" />
+                            <span asp-validation-for="NumeroDocumento" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PrimerNombre" class="form-label">Agregue su primer nombre</label>
+                            <input asp-for="PrimerNombre" class="form-control" />
+                            <span asp-validation-for="PrimerNombre" class="text-danger"></span>
+                        </div>
+
+  
+                        <div class="mb-3">
+                            <label asp-for="SegundoNombre" class="form-label">Agregue su segundo nombre (opcional)</label>
+                            <input asp-for="SegundoNombre" class="form-control" />
+                            <span asp-validation-for="SegundoNombre" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PrimerApellido" class="form-label">Agregue su primer apellido</label>
+                            <input asp-for="PrimerApellido" class="form-control" />
+                            <span asp-validation-for="PrimerApellido" class="text-danger"></span>
+                        </div>
+
+             
+                        <div class="mb-3">
+                            <label asp-for="SegundoApellido" class="form-label">Agregue su segundo apellido</label>
+                            <input asp-for="SegundoApellido" class="form-control" />
+                            <span asp-validation-for="SegundoApellido" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label asp-for="FechaNacimiento" class="form-label">Agregue su fecha de nacimiento</label>
+                            <input asp-for="FechaNacimiento" type="date" class="form-control" />
+                            <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                        </div>
+
+ 
+                        <div class="mb-3">
+                            <label asp-for="IdArea" class="form-label">Seleccione el área donde trabaja</label>
+                            <select asp-for="IdArea" class="form-select" asp-items="ViewBag.IdArea"></select>
+                            <span asp-validation-for="IdArea" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="d-flex justify-content-end">
+                            <a asp-action="Index" class="btn btn-secondary me-2">Volver</a>
+                            <button type="submit" class="btn btn-primary">Crear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    var modelStateErrors = ViewData.ModelState.Values.SelectMany(v => v.Errors).ToList();
+}
+
+@if (modelStateErrors.Any())
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in modelStateErrors)
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
